@@ -1,3 +1,5 @@
+//main.dart file
+
 import 'package:flutter/material.dart';
 import 'package:helpabode_provider/core/service/auth_wrapper.dart';
 import 'package:provider/provider.dart';

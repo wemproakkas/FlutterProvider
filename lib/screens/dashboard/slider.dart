@@ -9,9 +9,7 @@ class DashboardSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sliderList =
-        context.watch<ProfileProvider>().sliderData.sliderList ?? [];
-
+    final sliderList = context.watch<ProfileProvider>().sliderData.sliderList ?? []; 
     final ValueNotifier<int> currentIndex = ValueNotifier<int>(0);
 
     if (sliderList.isEmpty) {

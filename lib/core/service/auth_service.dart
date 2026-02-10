@@ -1,3 +1,5 @@
+// auth_service.dart file
+
 import 'package:flutter/material.dart';
 import 'package:helpabode_provider/screens/dashboard/provider/dashboard_provider.dart';
 import 'package:provider/provider.dart';
@@ -10,8 +12,9 @@ class AuthService {
 
     if (token == null || token.isEmpty) return false;
 
-    // Provider data load safely AFTER context available
-    await Provider.of<ProfileProvider>(context, listen: false).pullToRefreashData();
+    // Provider data load
+    final provider = Provider.of<ProfileProvider>(context, listen: false);
+    await provider.pullToRefreashData();
 
     return true;
   }
