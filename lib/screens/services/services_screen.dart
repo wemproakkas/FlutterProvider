@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:helpabode_provider/screens/services/provider/service_provider.dart';
+import 'package:helpabode_provider/screens/services/service_details.dart';
 import 'package:provider/provider.dart';
 
 class ServiceListDesign extends StatelessWidget {
+ 
   const ServiceListDesign({super.key});
 
   @override
@@ -39,14 +41,19 @@ class ServiceListDesign extends StatelessWidget {
             separatorBuilder: (_, __) => const SizedBox(height: 12),
             itemBuilder: (context, index) {
               final service = serviceList[index];
-
+ 
               return Material(
                 elevation: 2,
                 borderRadius: BorderRadius.circular(14),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(14),
                   onTap: () {
-                    // future: details screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => ServiceDetailsPage(serviceId: service.id!),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(12),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:helpabode_provider/screens/authentications/login/login.dart';
+import 'package:helpabode_provider/screens/bottom_nav_provider.dart';
+import 'package:helpabode_provider/screens/custom_bottom_navigation.dart';
 import 'package:helpabode_provider/screens/dashboard/provider/dashboard_provider.dart';
 import 'package:helpabode_provider/screens/dashboard/slider.dart';
+import 'package:helpabode_provider/screens/profile/profile_screen.dart';
 import 'package:helpabode_provider/screens/services/provider/service_provider.dart';
 import 'package:helpabode_provider/screens/services/service_add_screen.dart';
 import 'package:helpabode_provider/screens/services/services_screen.dart'; 
@@ -10,6 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class ProviderAppDashboardScreen extends StatelessWidget {
   const ProviderAppDashboardScreen({super.key});
+
+
+  
 
   // Logout function
   Future<void> logout(BuildContext context) async {
@@ -21,8 +27,20 @@ class ProviderAppDashboardScreen extends StatelessWidget {
     );
   }
 
+ 
   @override
   Widget build(BuildContext context) { 
+
+    final navProvider = context.watch<BottomNavProvider>();
+
+    final pages = [
+      const Center(child: Text("Home Screen")),
+      const Center(child: Text("Products Screen")),
+      const Center(child: Text("Category Screen")),
+      const Center(child: Text("Profile Screen")),
+    ];
+
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
 
       final ProfileProvider provider =  context.read<ProfileProvider>(); 
@@ -217,7 +235,30 @@ class ProviderAppDashboardScreen extends StatelessWidget {
           );
         },
       ),
-    
+
+
+      // Bottom Navigation Bar 
+
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: navProvider.currentIndex,
+        onTap: (index) { 
+          
+          context.read<BottomNavProvider>().changeIndex(index);
+
+
+          if(index == 3){
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ProfileScreen(),
+              ),
+            );
+          }
+
+
+
+        },
+      ),
      
     );
   }

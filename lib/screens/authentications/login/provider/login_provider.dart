@@ -44,14 +44,11 @@ class LoginProvider extends ChangeNotifier {
 
       final data = jsonDecode(response.body);
  
-      if (response.statusCode == 200 || response.statusCode == 201) {
- 
-        // Check exact key
+      if (response.statusCode == 200 || response.statusCode == 201) { 
         final accessToken = data['access'];
         print("Extracted token: $accessToken");
  
-        if (accessToken != null && accessToken.isNotEmpty) {
- 
+        if (accessToken != null && accessToken.isNotEmpty) { 
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('accessToken', accessToken);
           print("Login Success: Token Saved");

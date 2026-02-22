@@ -98,11 +98,16 @@ class AddServiceProvider extends ChangeNotifier {
       // Send request
       var response = await request.send();
 
+
+
+
       // Get response body
       final respStr = await response.stream.bytesToString();
        
  
       if (response.statusCode == 200 || response.statusCode == 201) {
+
+        
         print("Registration Success: $respStr");
         selectedImage = null;
         notifyListeners(); 
